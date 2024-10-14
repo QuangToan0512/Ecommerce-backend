@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const morgan = require('morgan')
 const helmet = require('helmet')
@@ -12,6 +13,7 @@ app.use(helmet()) // security headers info
 app.use(compression()) // Compress response bodies for all request that traverse through the middleware
 
 // init db
+require('./dbs/init.mongodb')
 
 // init routes
 app.get('/', (req, res, next) => {

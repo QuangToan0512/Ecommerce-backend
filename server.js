@@ -3,7 +3,7 @@
 
 const app = require("./src/app");
 
-const PORT = 3030
+const { app: { port: PORT } } = require('./src/configs/config.mongodb')
 
 // port, callback when start
 const server = app.listen(PORT, () => {
