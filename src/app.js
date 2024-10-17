@@ -6,9 +6,11 @@ const compression = require('compression')
 const app = express()
 
 // init middlewares
+app.use(express.json()); // Middleware để phân tích body JSON
+app.use(express.urlencoded({ extended: true })); // Middleware để phân tích body của form URL encoded
 
 //  recomment: using 'dev' with dev enviroment, using 'combined' with product enviroment
-app.use(morgan('dev'))
+app.use(morgan('dev'));
 app.use(helmet()) // security headers info
 app.use(compression()) // Compress response bodies for all request that traverse through the middleware
 
@@ -16,13 +18,7 @@ app.use(compression()) // Compress response bodies for all request that traverse
 require('./dbs/init.mongodb')
 
 // init routes
-app.get('/', (req, res, next) => {
-    const str = 'hello world'
-    return res.status(200).json({
-        message: 'res message',
-        metadata: str.repeat(10000)
-    })
-})
+app.use('/', require('./routers'))
 
 // handling error
 

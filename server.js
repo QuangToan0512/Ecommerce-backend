@@ -8,6 +8,7 @@ const { app: { port: PORT } } = require('./src/configs/config.mongodb')
 // port, callback when start
 const server = app.listen(PORT, () => {
     console.log(`ECM start with port: ${PORT}`);
+    console.log(`ECM start with: http://localhost:${PORT}`);
 })
 
 // The process object provides information about, and control over, the current Node.js process.
